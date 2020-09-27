@@ -20,6 +20,6 @@ jobs:
           meson compile 
       - name: Run executable 
         run: |
-          cd tools 
+          cd build/tools 
           chmod +x ./cubescript 
           ./cubescript -e "+ 40 2"
