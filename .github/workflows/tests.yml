@@ -13,18 +13,18 @@ jobs:
         run: |
           pip install meson ninja conan
           conan user
-      - name: Build 
+      - name: Build library and REPL executable
         run: |
           mkdir build 
           cd build 
           meson ..
           meson compile 
-      - name: Run executable 
+      - name: Run REPL executable 
         run: |
           cd build/tools 
           chmod +x ./cubescript 
           ./cubescript -e "+ 40 2"
-      - name: Run tests
+      - name: Build tests
         run: |
           cd tests
           mkdir build
@@ -32,4 +32,6 @@ jobs:
           cmake .. 
           cmake --build . 
           chmod +x ./bin/tests 
-          ./bin/tests
+      - name: Run tests 
+        run: |
+          ./tests/build/bin/tests
