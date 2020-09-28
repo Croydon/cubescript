@@ -55,3 +55,15 @@ TEST(MATH, minus)
     run_test("eq", "- 40 2", "38");
     run_test("ne", "- 30 9", "86");
 }
+
+TEST(MATH, multiplication)
+{
+    run_test("eq", "* 40 2", "80");
+    run_test("ne", "* 30 9", "100");
+}
+
+TEST(MATH, division)
+{
+    run_test("eq", "div 40 2", "20");
+    run_test("ne", "div 90 3", "40");
+}
