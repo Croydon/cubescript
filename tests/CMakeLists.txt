@@ -31,7 +31,7 @@ conan_cmake_run(CONANFILE conanfile.txt
 
 find_package(GTest REQUIRED)
 
-add_executable(${PROJECT_NAME} tests.cpp)
+add_executable(${PROJECT_NAME} tests.cc)
 target_include_directories(${PROJECT_NAME} BEFORE 
     PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/../include 
     PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/../include/cubescript
