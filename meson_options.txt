@@ -1,3 +1,9 @@
+option('repl_tool',
+    type: 'boolean',
+    value: true,
+    description: 'Build Read-eval-print loop tool'
+)
+
 option('readline',
     type: 'boolean',
     value: false,
