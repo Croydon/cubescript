@@ -11,7 +11,8 @@ jobs:
           python-version: "3.8"
       - name: Install dependencies
         run: |
-          pip install meson ninja
+          pip install meson ninja conan
+          conan user
       - name: Build 
         run: |
           mkdir build 
@@ -23,3 +24,12 @@ jobs:
           cd build/tools 
           chmod +x ./cubescript 
           ./cubescript -e "+ 40 2"
+      - name: Run tests
+        run: |
+          cd tests
+          mkdir build
+          cd build
+          cmake .. 
+          cmake --build . 
+          chmod +x ./bin/tests 
+          ./bin/tests
