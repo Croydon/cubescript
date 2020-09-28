@@ -5,3 +5,4 @@ subprojects/libostd
 build/
 .idea/
 .vscode/
+tests/cmake-build-debug/
