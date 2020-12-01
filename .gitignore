@@ -2,6 +2,7 @@
 *.core
 *.so
 build/
+builddir/
 .idea/
 .vscode/
 tests/cmake-build-debug/
