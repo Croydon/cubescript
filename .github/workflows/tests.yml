@@ -2,7 +2,7 @@ on: [push, pull_request]
 
 jobs:
   libcubescript:
-    name: Execute tests on ${{ matrix.os }}
+    name: Test on ${{ matrix.os }}
     runs-on: ${{ matrix.os }} 
     continue-on-error: ${{ matrix.experimental }}
     strategy:
