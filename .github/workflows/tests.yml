@@ -11,8 +11,13 @@ jobs:
           python-version: "3.8"
       - name: Install dependencies
         run: |
-          pip install meson ninja conan
+          pip install meson ninja conan cmake
+          apt-get install -y gcc-10
           conan user
+          gcc --version
+          meson --version
+          cmake --version
+          conan --version
       - name: Build library and REPL executable
         run: |
           mkdir build 
