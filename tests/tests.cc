@@ -44,6 +44,7 @@ void run_test(std::string compare, std::string input, std::string expected_resul
     }
 }
 
+
 TEST(MATH, plus)
 {
     run_test("eq", "+ 40 2", "42");
@@ -67,3 +68,17 @@ TEST(MATH, division)
     run_test("eq", "div 40 2", "20");
     run_test("ne", "div 90 3", "40");
 }
+
+TEST(MATH, nested)
+{
+    run_test("eq", "- 82 (+ 40 2)", "40");
+    run_test("ne", "- 82 (+ 40 -200)", "40");
+}
+
+
+TEST(VARIABLES, assign)
+{
+    run_test("eq", "foo = \"bar\"", "");
+    run_test("ne", "foo = \"bar\"", "bar");
+}
+
