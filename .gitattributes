@@ -8,5 +8,5 @@
 *.txt text eol=lf
 *.build text eol=lf 
 *.gitattributes text eol=lf 
-*.gitignores text eol=lf 
+*.gitignore text eol=lf 
 *.wrap text eol=lf 
