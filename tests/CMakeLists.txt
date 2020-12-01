@@ -25,7 +25,7 @@ conan_cmake_run(CONANFILE conanfile.txt
         BASIC_SETUP
         BUILD missing
         # UPDATE
-        SETTINGS compiler.cppstd=17
+        SETTINGS compiler.cppstd=20
         SETTINGS compiler.libcxx=libstdc++11
         )
 
@@ -40,4 +40,4 @@ target_include_directories(${PROJECT_NAME} BEFORE
     )
 
 target_link_libraries(${PROJECT_NAME} "${CMAKE_CURRENT_SOURCE_DIR}/../build/subprojects/libostd/src/libostd.a" "${CMAKE_CURRENT_SOURCE_DIR}/../build/src/libcubescript.a" GTest::gtest_main)
-set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 17)
+set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 20)
