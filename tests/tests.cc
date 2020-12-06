@@ -28,6 +28,10 @@ void run_test(std::string compare, std::string input, std::string expected_resul
 
     gcs.init_libs();
 
+    gcs.new_command("echo", "C", [](auto &, auto args, auto &res) {
+        res.set_str(args[0].get_str());
+    });
+
     gcs.run(input, ret);
 
     if(compare == "eq")
@@ -76,9 +80,36 @@ TEST(MATH, nested)
 }
 
 
+TEST(ECHO, literals_ascii)
+{
+    run_test("eq", "echo hello world", "hello world");
+    run_test("eq", "echo echo", "echo");
+    run_test("eq", "echo quit", "quit");
+    run_test("eq", "echo 42", "42");
+    run_test("eq", "echo /echo", "/echo");
+    run_test("eq", "echo", "");
+    run_test("ne", "echo + 40 2", "42");
+}
+
+TEST(ECHO, literals_unicode)
+{
+    run_test("eq", "echo äöü", "äöü");
+}
+
+TEST(ECHO, expression_result)
+{
+    run_test("eq", "echo (+ 40 2)", "42");
+}
+
+
 TEST(VARIABLES, assign)
 {
     run_test("eq", "foo = \"bar\"", "");
     run_test("ne", "foo = \"bar\"", "bar");
 }
 
+TEST(VARIABLES, assign_and_echo)
+{
+    run_test("eq", "foo = \"bar\"; echo $foo", "bar");
+    run_test("ne", "foo = \"bar\"; echo foo", "bar");
+}
