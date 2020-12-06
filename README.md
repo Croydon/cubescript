@@ -97,4 +97,20 @@ in the repository tracks Git revision https://github.com/antirez/linenoise/commi
 
 ## Licensing
 
-See COPYING.md for licensing information.
+Libcubescript is provided to you under the terms of the zlib license, just
+like the source it was originally derived from.
+
+The software is originally based on the CubeScript implementation in the Cube 2
+game/engine, which by now serves mostly as an inspiration, as the code has been
+largely rewritten (though isolated bits of the original source may remain).
+
+For copyright holders beyond just CubeScript, please refer to Cube 2's original
+license file.
+
+See LICENSE for licensing information.
+
+### Licensing exception
+
+Libcubescript bundles the linenoise line editing library for REPL usage.
+This library is available under the BSD 2-clause license, which is available
+within its source code.
