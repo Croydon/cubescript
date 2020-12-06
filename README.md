@@ -1,10 +1,10 @@
-# libcubescript
+# CubeScript
 
 ![CubeScript REPL](https://ftp.octaforge.org/q66/random/libcs_repl.gif)
 
 ## Overview
 
-Libcubescript is an embeddable implementation of the CubeScript scripting
+CubeScript is an embeddable implementation of the CubeScript scripting
 language. CubeScript is the console/config language of the Cube engines/games
 (and derived engines/games). It's a simplistic language defined around the
 idea of everything being a string, with Lisp-like syntax (allowing various
@@ -56,7 +56,7 @@ project is a part of the larger OctaForge umbrella.
 
 *(In progress)*
 
-Libcubescript supports integration with coroutines and threads by providing a
+CubeScript supports integration with coroutines and threads by providing a
 concept of threads itself. You can create a thread (child state) using the
 main state and it will share global data with the main state, but it also
 has its own call stack.
@@ -76,7 +76,7 @@ https://git.octaforge.org/OctaForge/libostd
 
 https://github.com/OctaForge/libostd
 
-If libostd can work on your system, so can libcubescript.
+If libostd can work on your system, so can CubeScript.
 
 Libostd is built using Meson. Therefore, you need to install Meson and then
 you can compile it as usual. Typically, this will be something like
@@ -87,17 +87,19 @@ meson ..
 meson compile
 ~~~
 
-Link the libcubescript library together with your application and everything should just work.
+Link the CubeScript library together with your application and everything should just work.
 It also builds the REPL.
 
 The project also bundles the linenoise line editing library which has been modified
-to compile cleanly as C++ (with the same flags as libcubescript). It's used strictly
-for the REPL only (you don't need it to build libcubescript itself). The version
+to compile cleanly as C++ (with the same flags as CubeScript). It's used strictly
+for the REPL only (you don't need it to build CubeScript itself). The version
 in the repository tracks Git revision https://github.com/antirez/linenoise/commit/c894b9e59f02203dbe4e2be657572cf88c4230c3.
 
 ## Licensing
 
-Libcubescript is provided to you under the terms of the zlib license, just
+This is a fork of [libcubescript](https://github.com/OctaForge/libcubescript).
+
+CubeScript and Libcubescript is provided to you under the terms of the zlib license, just
 like the source it was originally derived from.
 
 The software is originally based on the CubeScript implementation in the Cube 2
@@ -111,6 +113,6 @@ See LICENSE for licensing information.
 
 ### Licensing exception
 
-Libcubescript bundles the linenoise line editing library for REPL usage.
+CubeScript bundles the linenoise line editing library for REPL usage.
 This library is available under the BSD 2-clause license, which is available
 within its source code.
