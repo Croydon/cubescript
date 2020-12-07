@@ -10,7 +10,7 @@
 
 using namespace cscript;
 
-ostd::string_range version = "CubeScript 0.0.1";
+std::string version = "CubeScript 0.2.0";
 
 /* util */
 
