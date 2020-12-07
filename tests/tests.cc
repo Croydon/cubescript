@@ -113,3 +113,28 @@ TEST(VARIABLES, assign_and_echo)
     run_test("eq", "foo = \"bar\"; echo $foo", "bar");
     run_test("ne", "foo = \"bar\"; echo foo", "bar");
 }
+
+
+TEST(LOOPS, basic)
+{
+    run_test(
+        "eq",
+        "res = 0; loop i 10 [ res = (+ $res $i) ]; echo $res",
+        "45"
+    );
+}
+
+TEST(LOOPS, nested)
+{
+    run_test(
+        "eq",
+        "res = 0; loop x 2 [ loop i 10 [ res = (+ $res $i) ] ]; echo $res",
+        "90"
+    );
+
+    run_test(
+        "eq",
+        "res = 0; loop y 2 [ loop x 2 [ loop i 10 [ res = (+ $res $i) ] ] ]; echo $res",
+        "180"
+    );
+}
