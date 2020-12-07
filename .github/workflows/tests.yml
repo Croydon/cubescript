@@ -51,7 +51,7 @@ jobs:
           mkdir build
           cd build
           cmake .. 
-          cmake --build ..
+          cmake --build .
           chmod +x ./bin/tests
       - name: Run tests 
         run: |
