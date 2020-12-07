@@ -41,8 +41,8 @@ jobs:
       - name: Run REPL executable 
         run: |
           cd build/tools 
-          chmod +x ./cubescript 
-          ./cubescript -e "+ 40 2"
+          chmod +x ./cubescript_repl
+          ./cubescript_repl -e "+ 40 2"
       - name: Build tests
         run: |
           cd tests
