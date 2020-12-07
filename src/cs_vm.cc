@@ -3,6 +3,9 @@
 #include "cs_util.hh"
 
 #include <limits>
+#include <fstream>
+#include <filesystem>
+#include <sstream>
 
 namespace cscript {
 
@@ -1819,33 +1822,36 @@ CsLoopState cs_state::run_loop(cs_bcode *code) {
 }
 
 static bool cs_run_file(
-    cs_state &cs, ostd::string_range fname, cs_value &ret
+    cs_state &cs, std::string fname, cs_value &ret
 ) {
-    std::unique_ptr<char[]> buf;
+    std::stringstream buf;
+    std::string content;
     size_t len;
+    
+    std::ifstream f(fname, std::ifstream::in);
 
-    ostd::file_stream f(fname, ostd::stream_mode::READ);
     if (!f.is_open()) {
         return false;
     }
 
-    len = f.size();
-    buf = std::make_unique<char[]>(len + 1);
-    if (!buf) {
-        return false;
-    }
+    std::filesystem::path p = fname;
+
+    len = std::filesystem::file_size(p);
     try {
-        f.get(buf.get(), len);
+        buf << f.rdbuf();
     } catch (...) {
         return false;
     }
-    buf[len] = '\0';
+    content = buf.str();
+    content[len] = '\0';
 
-    cs_run(cs, fname, ostd::string_range(buf.get(), buf.get() + len), ret);
+    f.close();
+
+    cs_run(cs, fname, ostd::string_range(content), ret);
     return true;
 }
 
-std::optional<cs_string> cs_state::run_file_str(ostd::string_range fname) {
+std::optional<cs_string> cs_state::run_file_str(std::string fname) {
     cs_value ret;
     if (!cs_run_file(*this, fname, ret)) {
         return std::nullopt;
@@ -1853,7 +1859,7 @@ std::optional<cs_string> cs_state::run_file_str(ostd::string_range fname) {
     return ret.get_str();
 }
 
-std::optional<cs_int> cs_state::run_file_int(ostd::string_range fname) {
+std::optional<cs_int> cs_state::run_file_int(std::string fname) {
     cs_value ret;
     if (!cs_run_file(*this, fname, ret)) {
         return std::nullopt;
@@ -1861,7 +1867,7 @@ std::optional<cs_int> cs_state::run_file_int(ostd::string_range fname) {
     return ret.get_int();
 }
 
-std::optional<cs_float> cs_state::run_file_float(ostd::string_range fname) {
+std::optional<cs_float> cs_state::run_file_float(std::string fname) {
     cs_value ret;
     if (!cs_run_file(*this, fname, ret)) {
         return std::nullopt;
@@ -1869,7 +1875,7 @@ std::optional<cs_float> cs_state::run_file_float(ostd::string_range fname) {
     return ret.get_float();
 }
 
-std::optional<bool> cs_state::run_file_bool(ostd::string_range fname) {
+std::optional<bool> cs_state::run_file_bool(std::string fname) {
     cs_value ret;
     if (!cs_run_file(*this, fname, ret)) {
         return std::nullopt;
@@ -1877,11 +1883,11 @@ std::optional<bool> cs_state::run_file_bool(ostd::string_range fname) {
     return ret.get_bool();
 }
 
-bool cs_state::run_file(ostd::string_range fname, cs_value &ret) {
+bool cs_state::run_file(std::string fname, cs_value &ret) {
     return cs_run_file(*this, fname, ret);
 }
 
-bool cs_state::run_file(ostd::string_range fname) {
+bool cs_state::run_file(std::string fname) {
     cs_value ret;
     if (!cs_run_file(*this, fname, ret)) {
         return false;

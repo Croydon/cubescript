@@ -192,8 +192,9 @@ static bool do_call(cs_state &cs, ostd::string_range line, bool file = false) {
     signal(SIGINT, do_sigint);
     try {
         if (file) {
-            if (!cs.run_file(line, ret)) {
-                ostd::cerr.writeln("cannot read file: ", line);
+            std::string filename{line.iter_begin(), line.iter_end()};
+            if (!cs.run_file(filename, ret)) {
+                ostd::cerr.writeln("cannot read file: ", filename);
             }
         } else {
             cs.run(line, ret);
@@ -273,8 +274,9 @@ int main(int argc, char **argv) {
     cs_state gcs;
     gcs.init_libs();
 
-    gcs.new_command("exec", "s", [](auto &cs, auto args, auto &) {
-        auto file = args[0].get_strr();
+    gcs.new_command("exec", "s", [](auto &cs, auto args, auto &) {   
+        auto filer = args[0].get_strr();
+        std::string file{filer.iter_begin(), filer.iter_end()};
         bool ret = cs.run_file(file);
         if (!ret) {
             throw cscript::cs_error(

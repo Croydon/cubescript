@@ -35,7 +35,8 @@ void run_test(std::string compare, std::string input, std::string expected_resul
     // TODO: FIXME: Consider moving this to core?
     gcs.new_command("exec", "s", [](auto &cs, auto args, auto &res) {
         auto file = args[0].get_strr();
-        bool ret = cs.run_file(file, res);
+        std::string filename{file.iter_begin(), file.iter_end()};
+        bool ret = cs.run_file(filename, res);
         if (!ret)
         {
             throw cscript::cs_error(

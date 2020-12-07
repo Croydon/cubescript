@@ -448,12 +448,12 @@ struct OSTD_EXPORT cs_state {
         return p_inloop;
     }
 
-    std::optional<cs_string> run_file_str(ostd::string_range fname);
-    std::optional<cs_int> run_file_int(ostd::string_range fname);
-    std::optional<cs_float> run_file_float(ostd::string_range fname);
-    std::optional<bool> run_file_bool(ostd::string_range fname);
-    bool run_file(ostd::string_range fname, cs_value &ret);
-    bool run_file(ostd::string_range fname);
+    std::optional<cs_string> run_file_str(std::string fname);
+    std::optional<cs_int> run_file_int(std::string fname);
+    std::optional<cs_float> run_file_float(std::string fname);
+    std::optional<bool> run_file_bool(std::string fname);
+    bool run_file(std::string fname, cs_value &ret);
+    bool run_file(std::string fname);
 
     void set_alias(ostd::string_range name, cs_value v);
 
