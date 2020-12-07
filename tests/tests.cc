@@ -32,6 +32,17 @@ void run_test(std::string compare, std::string input, std::string expected_resul
         res.set_str(args[0].get_str());
     });
 
+    // TODO: FIXME: Consider moving this to core?
+    gcs.new_command("exec", "s", [](auto &cs, auto args, auto &res) {
+        auto file = args[0].get_strr();
+        bool ret = cs.run_file(file, res);
+        if (!ret)
+        {
+            throw cscript::cs_error(
+                cs, "could not run file \"%s\"", file);
+        }
+    });
+
     gcs.run(input, ret);
 
     if(compare == "eq")
@@ -136,5 +147,15 @@ TEST(LOOPS, nested)
         "eq",
         "res = 0; loop y 2 [ loop x 2 [ loop i 10 [ res = (+ $res $i) ] ] ]; echo $res",
         "180"
+    );
+}
+
+
+TEST(EXEC, basic)
+{
+    run_test(
+        "eq",
+        "exec files/basic.cfg",
+        "This is a file run"
     );
 }

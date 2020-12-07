@@ -49,10 +49,10 @@ jobs:
         run: |
           cd tests
           mkdir build
-          cd build
-          cmake .. 
-          cmake --build . 
-          chmod +x ./bin/tests 
+          cmake ./build 
+          cmake --build ./build
+          chmod +x ./build/bin/tests 
       - name: Run tests 
         run: |
-          ./tests/build/bin/tests
+          cd tests
+          ./build/bin/tests
