@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.15)
 project(tests)
 
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRES ON)
+
 if(NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE "Release")
   message(STATUS "Build type not specified: Use Release by default.")
@@ -40,4 +43,3 @@ target_include_directories(${PROJECT_NAME} BEFORE
     )
 
 target_link_libraries(${PROJECT_NAME} "${CMAKE_CURRENT_SOURCE_DIR}/../build/subprojects/libostd/src/libostd.a" "${CMAKE_CURRENT_SOURCE_DIR}/../build/src/libcubescript.a" GTest::gtest_main)
-set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 20)

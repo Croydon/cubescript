@@ -76,18 +76,17 @@ utilized in the outside native code.
   * Python >= 3.6
   * Conan >= 1.29.2
   * CMake >= 3.15
-  * Meson
+  * Meson >= 0.46
 
 
 ## Building and usage
 
-CubeScript is built using Meson. Therefore, you need to install Meson and then
-you can compile it. Typically, this will be something like
+You have to build it in a subdirectory, hence a typical build should look like this:
 
 ~~~
 mkdir build && cd build
-meson ..
-meson compile
+cmake ..
+cmake --build .
 ~~~
 
 Link the CubeScript library together with your application and everything should

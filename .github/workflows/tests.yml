@@ -36,8 +36,8 @@ jobs:
         run: |
           mkdir build 
           cd build 
-          meson ..
-          meson compile 
+          cmake ..
+          cmake --build .
       - name: Run REPL executable 
         run: |
           cd build/tools 
