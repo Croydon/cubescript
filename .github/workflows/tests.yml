@@ -1,5 +1,7 @@
 on: [push, pull_request]
 
+name: "CubeScript"
+
 jobs:
   libcubescript:
     name: Test on ${{ matrix.os }}
