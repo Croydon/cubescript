@@ -33,6 +33,7 @@ conan_cmake_run(CONANFILE conanfile.txt
         )
 
 find_package(GTest REQUIRED)
+find_library(LIBOSTD_LIBRARY libostd.a PATHS "../build/libostd/src" REQUIRED NO_DEFAULT_PATH)
 
 add_executable(${PROJECT_NAME} tests.cc)
 target_include_directories(${PROJECT_NAME} BEFORE 
@@ -42,4 +43,4 @@ target_include_directories(${PROJECT_NAME} BEFORE
     PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/../tools
     )
 
-target_link_libraries(${PROJECT_NAME} "${CMAKE_CURRENT_SOURCE_DIR}/../build/subprojects/libostd/src/libostd.a" "${CMAKE_CURRENT_SOURCE_DIR}/../build/src/libcubescript.a" GTest::gtest_main)
+target_link_libraries(${PROJECT_NAME} "${LIBOSTD_LIBRARY}" "${CMAKE_CURRENT_SOURCE_DIR}/../build/src/libcubescript.a" GTest::gtest_main)
