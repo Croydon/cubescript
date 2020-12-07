@@ -4,7 +4,7 @@ name: "CubeScript"
 
 jobs:
   libcubescript:
-    name: Test on ${{ matrix.os }}
+    name: ${{ matrix.os }}
     runs-on: ${{ matrix.os }} 
     continue-on-error: ${{ matrix.experimental }}
     strategy:
