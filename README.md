@@ -2,6 +2,7 @@
 
 ![CubeScript REPL](https://ftp.octaforge.org/q66/random/libcs_repl.gif)
 
+
 ## Overview
 
 CubeScript is an embeddable implementation of the CubeScript scripting
@@ -9,6 +10,7 @@ language. CubeScript is the console/config language of the Cube engines/games
 (and derived engines/games). It's a simplistic language defined around the
 idea of everything being a string, with Lisp-like syntax (allowing various
 control structures to be defined as commands).
+
 
 ## Benefits and use cases
 
@@ -49,8 +51,8 @@ should not use the project in production environments just yet, but you're
 also free to experiment - feedback is welcome.
 
 **The project is also open for contributions.** You can use pull requests on
-GitHub and there is also a discussion channel `#octaforge` on FreeNode; this
-project is a part of the larger OctaForge umbrella.
+GitHub and you can issues for suggestions and discussions.
+
 
 ## Threads and coroutines
 
@@ -96,6 +98,7 @@ to compile cleanly as C++ (with the same flags as CubeScript). It's used strictl
 for the REPL only (you don't need it to build CubeScript itself). The version
 in the repository tracks Git revision https://github.com/antirez/linenoise/commit/c894b9e59f02203dbe4e2be657572cf88c4230c3.
 
+
 ## Licensing
 
 This is a fork of [libcubescript](https://github.com/OctaForge/libcubescript)
@@ -112,7 +115,8 @@ largely rewritten (though isolated bits of the original source may remain).
 For copyright holders beyond just CubeScript, please refer to Cube 2's original
 license file.
 
-See LICENSE for licensing information.
+See the LICENSE file for licensing information.
+
 
 ### Licensing exception
 
