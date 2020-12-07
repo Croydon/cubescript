@@ -72,6 +72,7 @@ utilized in the outside native code.
 
 
 ## Build requirements
+  * a compiler with C++20 support
   * Python >= 3.6
   * Conan >= 1.29.2
   * CMake >= 3.15
