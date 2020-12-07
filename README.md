@@ -68,6 +68,14 @@ affecting any other threads.
 This functionality is not exposed into the language itself, but it can be
 utilized in the outside native code.
 
+
+## Build requirements
+  * Python >= 3.6
+  * Conan >= 1.29.2
+  * CMake >= 3.15
+  * Meson
+
+
 ## Building and usage
 
 CubeScript is built using Meson. Therefore, you need to install Meson and then
