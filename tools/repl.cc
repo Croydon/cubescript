@@ -217,7 +217,9 @@ static bool do_call(cs_state &cs, ostd::string_range line, bool file = false) {
         if (!file && ((terr == "missing \"]\"") || (terr == "missing \")\""))) {
             return true;
         }
-        cscript::writeErrorln(!is_lnum ? "stdin: " : "stdin:", e.what());
+        ostd::string_range perror = e.what();
+        std::string perrors{perror.iter_begin(), perror.iter_end()};
+        cscript::writeErrorln(!is_lnum ? "stdin: " : "stdin:", perrors);
         if (e.get_stack().get()) {
             cscript::util::print_stack(ostd::cout.iter(), e.get_stack());
             cscript::writeError('\n');
