@@ -1,5 +1,6 @@
 #ifdef CS_REPL_USE_LINENOISE
-#ifdef OSTD_PLATFORM_POSIX
+#if defined(WIN32) || defined(_WIN32) || (defined(__WIN32) && !defined(__CYGWIN__))
+#else
 #ifndef CS_REPL_HAS_EDIT
 #define CS_REPL_HAS_EDIT
 /* use the bundled linenoise library, default */

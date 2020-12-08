@@ -4,7 +4,6 @@
 
 #include <optional>
 
-#include <ostd/platform.hh>
 #include <ostd/io.hh>
 #include <ostd/string.hh>
 

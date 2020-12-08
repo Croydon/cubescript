@@ -3,7 +3,6 @@
 #include <optional>
 #include <iostream>
 
-#include <ostd/platform.hh>
 #include <ostd/io.hh>
 #include <ostd/string.hh>
 
@@ -16,7 +15,7 @@ std::string version = "CubeScript 0.2.0";
 
 /* util */
 
-#ifdef OSTD_PLATFORM_WIN32
+#if defined(WIN32) || defined(_WIN32) || (defined(__WIN32) && !defined(__CYGWIN__))
 #include <io.h>
 static bool stdin_is_tty() {
     return _isatty(_fileno(stdin));
