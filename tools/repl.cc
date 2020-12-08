@@ -1,6 +1,7 @@
 #include <signal.h>
 
 #include <optional>
+#include <iostream>
 
 #include <ostd/platform.hh>
 #include <ostd/io.hh>
@@ -158,8 +159,8 @@ inline cs_command *get_hint_cmd(cs_state &cs, ostd::string_range buf) {
 /* usage */
 
 void print_usage(ostd::string_range progname, bool err) {
-    auto &s = err ? ostd::cerr : ostd::cout;
-    s.writeln(
+    auto &s = err ? std::cerr : std::cout;
+    s << (
         "Usage: ", progname, " [options] [file]\n"
         "Options:\n"
         "  -e str  run string \"str\"\n"
