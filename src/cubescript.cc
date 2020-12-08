@@ -1,5 +1,6 @@
 #include <cubescript/cubescript.hh>
 #include "cs_vm.hh"
+#include "cs_print.hh"
 
 namespace cscript {
 
@@ -653,7 +654,7 @@ OSTD_EXPORT void cs_state::set_alias(ostd::string_range name, cs_value v) {
 }
 
 OSTD_EXPORT void cs_state::print_var(cs_var *v) {
-    ostd::writeln(v->to_printable());
+    writeStandardln(v->to_printable());
 }
 
 void cs_alias::get_cstr(cs_value &v) const {

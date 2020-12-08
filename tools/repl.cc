@@ -8,6 +8,7 @@
 #include <ostd/string.hh>
 
 #include <cubescript/cubescript.hh>
+#include "../src/cs_print.hh"
 
 using namespace cscript;
 
@@ -174,7 +175,7 @@ void print_usage(ostd::string_range progname, bool err) {
 }
 
 void print_version() {
-    ostd::writeln(version);
+    cscript::writeStandardln(version);
 }
 
 static cs_state *scs = nullptr;
@@ -195,7 +196,7 @@ static bool do_call(cs_state &cs, ostd::string_range line, bool file = false) {
         if (file) {
             std::string filename{line.iter_begin(), line.iter_end()};
             if (!cs.run_file(filename, ret)) {
-                ostd::cerr.writeln("cannot read file: ", filename);
+                cscript::writeErrorln("cannot read file: ", filename);
             }
         } else {
             cs.run(line, ret);
@@ -216,17 +217,17 @@ static bool do_call(cs_state &cs, ostd::string_range line, bool file = false) {
         if (!file && ((terr == "missing \"]\"") || (terr == "missing \")\""))) {
             return true;
         }
-        ostd::writeln(!is_lnum ? "stdin: " : "stdin:", e.what());
+        cscript::writeErrorln(!is_lnum ? "stdin: " : "stdin:", e.what());
         if (e.get_stack().get()) {
             cscript::util::print_stack(ostd::cout.iter(), e.get_stack());
-            ostd::write('\n');
+            cscript::writeError('\n');
         }
         return false;
     }
     signal(SIGINT, SIG_DFL);
     scs = nullptr;
     if (ret.get_type() != cs_value_type::Null) {
-        ostd::writeln(ret.get_str());
+        cscript::writeError(ret.get_str());
     }
     return false;
 }
@@ -240,7 +241,7 @@ static void do_tty(cs_state &cs) {
         do_exit = true;
     });
 
-    ostd::writeln(version, " (REPL mode)");
+    cscript::writeStandardln(version, " (REPL mode)");
     for (;;) {
         auto line = read_line(cs, prompt);
         if (!line) {
@@ -287,7 +288,7 @@ int main(int argc, char **argv) {
     });
 
     gcs.new_command("echo", "C", [](auto &, auto args, auto &) {
-        ostd::writeln(args[0].get_strr());
+        cscript::writeStandardln(args[0].get_str());
     });
 
     int firstarg = 0;

@@ -1,6 +1,7 @@
 add_library(cubescript 
     ../include/cubescript/cubescript.hh
     ../include/cubescript/cubescript_conf.hh
+    cs_print.hh
     cs_gen.cc
     cs_util.cc
     cs_val.cc
