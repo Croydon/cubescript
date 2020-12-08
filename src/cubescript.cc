@@ -1082,6 +1082,21 @@ void cs_init_lib_base(cs_state &gcs) {
         throw cs_error(cs, args[0].get_strr());
     });
 
+    /***
+     * This cryptic function executes function call arg[0]
+     * The result will be written into args[1]
+     * A stacktrace will be written into args[2]
+     * Example:
+     *  > code = [ (+ 40 (*** 2 8)); ]
+        > pcall code res stack
+        0
+        > echo $res
+        unknown command: ***
+        > echo $stack
+        1) code
+     * TODO: Either I'm still missunderstanding this function or it does not work currently with a
+     * stack trace > 1 
+     */
     gcs.new_command("pcall", "err", [](auto &cs, auto args, auto &ret) {
         cs_alias *cret = args[1].get_ident()->get_alias(),
                 *css  = args[2].get_ident()->get_alias();
