@@ -90,6 +90,28 @@ TEST(MATH, nested)
     run_test("ne", "- 82 (+ 40 -200)", "40");
 }
 
+TEST(MATH, modulo)
+{
+    run_test("eq", "mod 5 3", "2");
+    run_test("eq", "mod 5 5", "0");
+}
+
+TEST(MATH, absolute)
+{
+    run_test("eq", "abs -35", "35");
+    run_test("eq", "abs 42", "42");
+}
+
+TEST(MATH, min)
+{
+    run_test("eq", "min 42 -2 8", "-2");
+}
+
+TEST(MATH, max)
+{
+    run_test("eq", "max 42 -2 8", "42");
+}
+
 
 TEST(ECHO, literals_ascii)
 {
